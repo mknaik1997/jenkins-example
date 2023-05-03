@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+    stages{
+        stage('checkout'){
+            steps{
+                checkout scmGit(branches: [[name: '*/dev']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/mknaik1997/taxi-booking.git']])
+            }
+        }
+        stage('build'){
+            steps{
+                sh 'mvn package'
+            }
+        }
+    }
+}
